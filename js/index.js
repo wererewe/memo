@@ -140,5 +140,13 @@ const handleBeforeunload = () => {
     ls.setItem();
 }
 
+const closeInfo = () => {
+    const targetDom = $(event)[0].target;
+    $(targetDom).parent().addClass('close');
+    $(targetDom).remove();
+}
+
 $(document).on("contextmenu", handleContextMenuClickEvent.bind(this));
 $(window).on("beforeunload", handleBeforeunload.bind(this));
+
+$('.infoCloseButton').on('click', closeInfo.bind(this));
