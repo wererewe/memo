@@ -39,7 +39,7 @@ const createMemo = (initialData) => {
 const handleRemoveMemoClickEvent = () => {
     event.stopImmediatePropagation();
     const targetDom = $(event.target).parent().parent();
-
+ㅜ
     delete ls.memoData[targetDom[0].getAttribute("memoid")]
     targetDom.remove();
 }
@@ -56,7 +56,7 @@ const setMemoContents = () => {
 */
 const handleClickEvent = () => {
     let targetDom = $(event.currentTarget)[0];
-        
+    if (+targetDom.style.zIndex === maxIndex) return;
     maxIndex++;
     targetDom.style.zIndex = maxIndex;
     ls.memoData[targetDom.getAttribute("memoid")].move(null, null, maxIndex);
@@ -94,8 +94,10 @@ const createMemoDom = (memo) => {
         const offsetY = - event.offsetY;
         let dragStart = false;
 
-        maxIndex++;
-        targetDom.style.zIndex = maxIndex;
+        if (+targetDom.style.zIndex !== maxIndex) {
+            maxIndex++;
+            targetDom.style.zIndex = maxIndex;
+        }
     
         /**
          * mousedown 상태에서 mousemove 이벤트가 들어오면 드래그로 동작하도록 처리한다.
