@@ -39,7 +39,7 @@ const createMemo = (initialData) => {
 const handleRemoveMemoClickEvent = () => {
     event.stopImmediatePropagation();
     const targetDom = $(event.target).parent().parent();
-ㅜ
+
     delete ls.memoData[targetDom[0].getAttribute("memoid")]
     targetDom.remove();
 }
