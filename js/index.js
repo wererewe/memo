@@ -26,8 +26,7 @@ const handleContextMenuClickEvent = (e) => {
 
 const createMemo = (initialData) => {
     if (!initialData) return;
-    const memo = new Memo;
-    memo.initialze(initialData);
+    const memo = new Memo(initialData);
 
     if (initialData.zIndex > maxIndex){
         maxIndex = initialData.zIndex;

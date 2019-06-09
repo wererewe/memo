@@ -2,7 +2,11 @@ const DEFAULT_WIDTH_SIZE = 200;
 const DEFAULT_HEIGHT_SIZE = 200;
 
 export class Memo {
-    initialze = (initialData) => {
+    constructor(initialData) {
+        this._initialze(initialData);
+    }
+    
+    _initialze = (initialData) => {
         if (!initialData) return;
         this.id = initialData.id || Math.random().toString(36).substr(2, 4);
         this.width = initialData.width || DEFAULT_WIDTH_SIZE;
