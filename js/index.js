@@ -44,7 +44,21 @@ const handleRemoveMemoClickEvent = () => {
     targetDom.remove();
 }
 
+const correctZIndex = () => {
+    const lis = $('li').toArray();
+    const sortByZIndex = (a, b) => {
+        return a < b ? -1 : a > b ? 1 : 0;
+    }
+
+    lis.sort((a, b) => sortByZIndex(+a.style.zIndex, +b.style.zIndex))
+        .forEach((li, index) => {
+            const memoid = li.getAttribute('memoid');
+            ls.memoData[memoid].zIndex = index;
+        })
+}
+
 const setMemoContents = () => {
+    correctZIndex();
     $('.textarea').toArray().forEach((item, index) => {
         ls.memoData[item.getAttribute("memoid")].contents = item.value
     });
